@@ -5,7 +5,7 @@ import { getCourseById, getUserProgress } from "@/db/queries";
 import { userProgress } from "@/db/schema";
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
+import { redirect  } from "next/navigation";
 
 export const upsertUserProgress = async( courseId : number )=>{
   const {userId}=await auth();
@@ -18,6 +18,7 @@ export const upsertUserProgress = async( courseId : number )=>{
   const course = await getCourseById(courseId);
 
   if(!course){
+
     throw new Error("Course not found");
   }
 
@@ -26,6 +27,7 @@ export const upsertUserProgress = async( courseId : number )=>{
   const existingUserProgress = await getUserProgress();
 
   if(existingUserProgress){
+
     await db.update(userProgress).set({
       activeCourseId:courseId,
       userName:user.firstName || "User",
@@ -34,8 +36,10 @@ export const upsertUserProgress = async( courseId : number )=>{
 
     revalidatePath("/courses");
     revalidatePath("/learn")
-    redirect("/learn")    
+   redirect("/learn")    
   }
+
+  console.log(5)
 
   await db.insert(userProgress).values({
     userId,
@@ -45,6 +49,6 @@ export const upsertUserProgress = async( courseId : number )=>{
   });
 
   revalidatePath("/courses");
-  revalidatePath("/learn")
-  redirect("/learn")
+  revalidatePath("/learn");
+  redirect("/learn");
 }
