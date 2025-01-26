@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Nunito} from "next/font/google";
+import { Toaster } from "sonner";
 import "./globals.css";
 import {
   ClerkProvider,
@@ -26,6 +27,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={font.className}>
+          <Toaster />
           {children}
         </body>
       </html>
