@@ -16,3 +16,7 @@ import * as schema from "./schema"
 const db = drizzle(process.env.DATABASE_URL! , {schema}); 
 export default db;
 """
+
+1/28
+circlePercentage がreact19で使えないため不使用
+

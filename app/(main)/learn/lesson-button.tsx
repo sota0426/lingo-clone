@@ -75,6 +75,7 @@ export const LessonButton =({
                 variant={locked ? "locked" : "secondary"}
                 className="h-[70px] w-[70px] border-b-8 "
               >
+              <div>
               <Icon 
                 className={cn(
                   "h-20 w-20",
@@ -84,6 +85,8 @@ export const LessonButton =({
                   isCompleted && "fill-none stroke-[4]"
                 )}
               />
+              {percentage} %
+              </div>   
             </Button>
           </div>
             ):(
