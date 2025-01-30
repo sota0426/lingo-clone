@@ -22,6 +22,7 @@ export const getUserProgress= cache( async()=>{
 return data;
 })
 
+
 export const getUnits=cache(async()=>{
   const {userId} = await auth();
   const userProgress = await getUserProgress();
@@ -50,6 +51,11 @@ export const getUnits=cache(async()=>{
 
   const normalizedData = data.map((unit)=>{
     const lessonsWithCompletedStatus = unit.lessons.map((lesson)=>{
+
+      if(lesson.challenges.length === 0 ){
+        return {...lesson, completed:false}
+      }
+
       const allCompleteChallenges = lesson.challenges.every((challenge)=>{
         return challenge.challengeProgress
           && challenge.challengeProgress.length > 0
@@ -96,7 +102,11 @@ export const getCourseProgress = cache ( async ()=>{
 
   const unitsInActiveCourse = await db.query.units.findMany({
     orderBy:(units,{asc})=>[asc(units.order)],
-    where:eq(units.courseId , userProgress.activeCourseId),
+    
+    where: userProgress.activeCourseId !== null
+      ? eq(units.courseId , userProgress.activeCourseId)
+      : undefined,
+
     with:{
       lessons:{
         orderBy:(lessons , {asc}) => [asc(lessons.order)],
@@ -127,6 +137,7 @@ export const getCourseProgress = cache ( async ()=>{
       activeLessonId : firstUncompletedLesson?.id,
     };
 });;
+
 
 
 export const getLesson = cache(async(id? : number)=>{
