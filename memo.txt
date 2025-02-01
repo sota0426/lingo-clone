@@ -20,3 +20,6 @@ export default db;
 1/28
 circlePercentage がreact19で使えないため不使用
 
+1/31
+6:17:09
+クイズのカードまで進んだ。

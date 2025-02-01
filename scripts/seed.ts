@@ -101,12 +101,27 @@ const main = async()=>{
         type:"SELECT",
         order:1,
         question:"Which one of these is the 'the man' ? "
-      }
+      },
+      {
+        id:2,
+        lessonId:1,
+        type:"ASSIST",
+        order:2,
+        question:"'the man'"
+      },
+      {
+        id:3,
+        lessonId:1,
+        type:"SELECT",
+        order:3,
+        question:"Which one of these is the 'the robot' ? "
+      },   
     ]);
+
+
 
     await db.insert(schema.challengeOptions).values([
       {
-        id:1,
         challengeId:1,
         imageSrc:"/man.png",
         correct:true,
@@ -114,10 +129,61 @@ const main = async()=>{
         audioSrc:"/man.mp3"
       },
       {
-        id:2,
         challengeId:1,
         imageSrc:"/man.png",
         correct:false,
+        text:"who is he?",
+        audioSrc:"/man.mp3"
+      },
+      {
+        challengeId:1,
+        imageSrc:"/man.png",
+        correct:false,
+        text:"who is he?",
+        audioSrc:"/man.mp3"
+      },
+    ])
+
+    await db.insert(schema.challengeOptions).values([
+      {
+        challengeId:2,
+        correct:true,
+        text:"who is he?",
+        audioSrc:"/man.mp3"
+      },
+      {
+        challengeId:2,
+        correct:false,
+        text:"who is he?",
+        audioSrc:"/man.mp3"
+      },
+      {
+        challengeId:2,
+        correct:false,
+        text:"who is he?",
+        audioSrc:"/man.mp3"
+      },
+    ])
+
+    await db.insert(schema.challengeOptions).values([
+      {
+        challengeId:3,
+        correct:false,
+        text:"who is he?",
+        imageSrc:"/man.png",
+        audioSrc:"/man.mp3"
+      },
+      {
+        challengeId:3,
+        correct:false,
+        imageSrc:"/man.png",
+        text:"who is he?",
+        audioSrc:"/man.mp3"
+      },
+      {
+        challengeId:3,
+        correct:true,
+        imageSrc:"/man.png",
         text:"who is he?",
         audioSrc:"/man.mp3"
       },
