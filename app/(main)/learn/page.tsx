@@ -13,8 +13,6 @@ const LearnPage =async()=>{
   const lessonPercentageData = getLessonPercentage(); 
   const unitsData = getUnits();
 
-
-
   const [
     userProgress,
     units,
@@ -28,10 +26,6 @@ const LearnPage =async()=>{
   ])
 
   if(!userProgress || !userProgress.activeCourse){
-    redirect("./courses")
-  }
-
-  if(!courseProgress){
     redirect("/courses")
   }
 

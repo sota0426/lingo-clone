@@ -1,13 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { CheckCircle, XCircle } from "lucide-react";
-import { useKey, useMedia } from "react-use";
+import { useKey , useWindowSize } from "react-use";
 
 type Props={
     status:"correct" | "wrong" | "none" | "completed";
     disabled?:boolean;
     onCheck?:()=>void;
-    lessonId?:boolean;
+    lessonId?:number;
 };
 
 export const Footer =({
@@ -18,7 +18,8 @@ export const Footer =({
 }:Props)=>{
     useKey("Enter" , onCheck,{},[onCheck]);
 
-    const isMobile = useMedia("(max-width:1024px)");
+    const { width } = useWindowSize();
+    const isMobile = width < 768;
 
     return(
         <footer 
