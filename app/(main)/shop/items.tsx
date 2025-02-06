@@ -3,6 +3,7 @@
 import { refillHearts } from "@/actions/user-progress";
 import { createStripeUrl } from "@/actions/user-subscription";
 import { Button } from "@/components/ui/button";
+import { POINTS_TO_REFILL } from "@/constants";
 import Image from "next/image";
 import { useTransition } from "react";
 import { toast } from "sonner";
@@ -13,7 +14,6 @@ type Props={
   hasActiveSubscription:boolean;
 }
 
-const POINTS_TO_REFILL = 10;
 
 export const Items =({
   hearts,
@@ -65,7 +65,7 @@ export const Items =({
           onClick={onRefillHearts}
           disabled={isPending || hearts=== 5  || points < POINTS_TO_REFILL}
         >
-          {hearts === 5 /// todo 5
+          {hearts === 5 
           ? "full"
           : (
             <div className="flex items-center">
